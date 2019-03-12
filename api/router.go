@@ -2,9 +2,9 @@ package api
 
 import (
 	"encoding/json"
-	"encoding/xml"
+	// "encoding/xml"
 	"net/http"
-	"strings"
+	// "strings"
 	"time"
 
 	"github.com/gorilla/handlers"
