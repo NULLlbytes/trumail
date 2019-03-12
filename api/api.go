@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/felipemsantana/trumail/config"
+	"github.com/envolt/trumail/config"
 )
 
 // RegisterEndpoints bind endpoints to the router
