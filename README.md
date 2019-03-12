@@ -10,7 +10,7 @@ NOTE: It is highly recommended (due to potential heroku IP blacklisting resultin
 
 Using the API is very simple. All that's needed to validate an address is to send a `GET` request using the below URL with one of our two supported formats (json/xml).
 ```
-trumail.io/{format}/{email}
+trumail.io/validate-email/{email}
 ```
 
 ## Using the library

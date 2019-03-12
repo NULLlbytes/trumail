@@ -61,7 +61,7 @@ func (r *router) ListenAndServe(port string) error {
 	srv.Handler = handlers.CORS(
 		handlers.AllowedHeaders([]string{"Authorization", "Content-Type"}),
 		handlers.AllowedMethods([]string{"POST", "PUT", "GET", "OPTIONS", "HEAD"}),
-		handlers.AllowedOrigins([]string{"*"}),
+		// handlers.AllowedOrigins([]string{"*"}),
 	)(r.router)
 
 	// Set the port to run on and serve
@@ -80,13 +80,12 @@ func (r *router) endpointWrapper(e Endpoint) http.HandlerFunc {
 	return func(rw http.ResponseWriter, req *http.Request) {
 		// Extract the request params
 		ipAddr := req.Header.Get("X-Forwarded-For")
-		format := strings.ToLower(mux.Vars(req)["format"])
 
 		// Execute rate limit logic if the server is configured to do so
 		if r.rateLimit {
 			if last, ok := r.rateMap.Load(ipAddr); ok {
 				if last.(time.Time).Add(time.Second).After(time.Now()) {
-					respond(rw, http.StatusTooManyRequests, format,
+					respond(rw, http.StatusTooManyRequests,
 						NewError("You have exceeded the rate-limit", http.StatusTooManyRequests, nil))
 					return
 				}
@@ -99,36 +98,21 @@ func (r *router) endpointWrapper(e Endpoint) http.HandlerFunc {
 		res, err := e(req)
 		if err != nil {
 			if e, ok := err.(*Error); ok {
-				respond(rw, e.StatusCode, format, e)
+				respond(rw, e.StatusCode, e)
 			} else {
-				respond(rw, http.StatusInternalServerError, format,
+				respond(rw, http.StatusInternalServerError,
 					NewError("An error has occurred", http.StatusInternalServerError, err))
 			}
 			return
 		}
-		respond(rw, http.StatusOK, format, res)
+		respond(rw, http.StatusOK, res)
 	}
 }
 
 // respond is responsible for encoding the response and writing the desired
 // format to the http.ResponseWriter
-func respond(w http.ResponseWriter, status int, format string, res interface{}) {
-	// Encode the response using the format passed
-	switch format {
-	case "xml":
-		encodeXML(w, status, res)
-	case "json":
-		encodeJSON(w, status, res)
-	default:
-		encodeJSON(w, status, res)
-	}
-}
-
-// encodeXML encodes the response to XML and writes it to the ResponseWriter
-func encodeXML(w http.ResponseWriter, status int, res interface{}) {
-	w.Header().Set("Content-Type", "application/xml; charset=utf-8")
-	w.WriteHeader(status)
-	xml.NewEncoder(w).Encode(res)
+func respond(w http.ResponseWriter, status int, res interface{}) {
+	encodeJSON(w, status, res)
 }
 
 // encodeJSON encodes the response to JSON and writes it to the ResponseWriter

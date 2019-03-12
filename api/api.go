@@ -13,7 +13,7 @@ import (
 
 // RegisterEndpoints bind endpoints to the router
 func RegisterEndpoints(r Router, s Lookuper) {
-	r.HandleEndpoint("/{format:(?:xml|json)}/{email}", s.Lookup).Methods(http.MethodGet)
+	r.HandleEndpoint("/validate-email/{email}", s.Lookup).Methods(http.MethodGet)
 	r.HandleEndpoint("/healthcheck", s.Healthcheck).Methods(http.MethodGet)
 }
 
