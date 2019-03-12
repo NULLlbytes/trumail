@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/sirupsen/logrus"
 	"github.com/envolt/trumail/verifier"
@@ -36,6 +37,7 @@ func NewLookuper(log *logrus.Logger, hostname, sourceAddr string) Lookuper {
 // Lookup performs a single email validation
 func (s *lookuper) Lookup(r *http.Request) (interface{}, error) {
 	l := s.log.WithField("handler", "Lookup")
+	startTime := time.Now()
 	l.Info("New Lookup request received")
 
 	// Decode the request
@@ -58,7 +60,8 @@ func (s *lookuper) Lookup(r *http.Request) (interface{}, error) {
 	lookup := lookups[0]
 
 	// Returns the email validation lookup to the requestor
-	l.WithField("lookup", lookup).Info("Returning Email Lookup")
+	elapsed := time.Now().Sub(startTime).Nanoseconds() / 1e6
+	l.WithField("lookup", lookup).WithField("processingTimeMs", elapsed).Info("Returning Email Lookup")
 	return lookup, nil
 }
 
