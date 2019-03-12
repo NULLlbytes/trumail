@@ -1,42 +1,47 @@
-hash: 0fa83176fa11f5e2c6850c57e5e9213492bbd5fa2af54ae650ce0c13aecac2d6
-updated: 2017-11-18T22:16:22.753062-07:00
+hash: 0c4cb509eed6cbed1afdabfc8e86ee763a1badfa64b35c873f39fdb47138fd8f
+updated: 2019-03-12T15:53:39.577444+05:30
 imports:
-- name: github.com/gorilla/context
-  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/handlers
-  version: 90663712d74cb411cbef281bc1e08c19d1a76145
+  version: ac6d24f88de4584385a0cb3a88f953d08a2f7a05
 - name: github.com/gorilla/mux
-  version: 2d5fef06b891c971b14aa6f71ca5ab6c03a36e0e
-- name: github.com/Sirupsen/logrus
-  version: 95cd2b9c79aa5e72ab0bc69b7ccc2be15bf850f6
+  version: 15a353a636720571d19e37b34a14499c3afa9991
+- name: github.com/konsorten/go-windows-terminal-sequences
+  version: f55edac94c9bbba5d6182a4be46d86a2c9b5b50e
+- name: github.com/sirupsen/logrus
+  version: dae0fa8d5b0c810a8ab733fbd5510c7cae84eca4
 - name: golang.org/x/crypto
-  version: 9f005a07e0d31d45e6656d241bb5c0f2efd4bc94
+  version: c2843e01d9a2bc60bb26ad24e09734fdc2d9ec58
   subpackages:
   - ssh/terminal
 - name: golang.org/x/net
-  version: 9dfe39835686865bff950a07b394c12a98ddc811
+  version: d8887717615a059821345a5c23649351b52a1c0b
   subpackages:
-  - context
   - idna
 - name: golang.org/x/sync
-  version: fd80eb99c8f653c847d294a001bdf2a3a6f768f5
+  version: e225da77a7e68af35c70ccbf71af2b83e6acac3c
   subpackages:
   - errgroup
   - syncmap
 - name: golang.org/x/sys
-  version: 0ac51a24ef1c37380f98ba8b98f56e3bffd59850
+  version: fead79001313d15903fb4605b4a1b781532cd93e
   subpackages:
   - unix
   - windows
 - name: golang.org/x/text
-  version: 88f656faf3f37f690df1a32515b479415e1a6769
+  version: 5d731a35f4867878fc89f7744f7b6debb3beded6
   subpackages:
   - secure/bidirule
   - transform
   - unicode/bidi
   - unicode/norm
 testImports:
+- name: github.com/h2non/parth
+  version: b4df798d65426f8c8ab5ca5f9987aec5575d26c9
+- name: github.com/kr/pretty
+  version: 73f6ac0b30a98e433b289500d779f50c1a6f0712
+- name: github.com/kr/text
+  version: e2ffdb16a802fe2bb95e2e35ff34f0e53aeef34f
 - name: gopkg.in/check.v1
-  version: 20d25e2804050c1cd24a7eea1e7a6447dd0e74ec
+  version: 788fd78401277ebd861206a03c884797c6ec5541
 - name: gopkg.in/h2non/gock.v1
-  version: 84d599244901620fb3eb96473eb9e50619f69b47
+  version: ba88c4862a27596539531ce469478a91bc5a0511

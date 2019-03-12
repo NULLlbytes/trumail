@@ -3,7 +3,7 @@ package api
 import (
 	"net/http"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/envolt/trumail/verifier"
 	"github.com/gorilla/mux"
 )

@@ -5,11 +5,11 @@ import (
 	"os"
 	"os/signal"
 	"runtime/pprof"
-	"strings"
+//	"strings"
 	"syscall"
 	"time"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/envolt/trumail/api"
 	"github.com/envolt/trumail/config"
 )
@@ -21,9 +21,9 @@ func main() {
 
 	logger := logrus.New() // New Logger
 
-	if strings.Contains(config.Env, "prod") {
+	// if strings.Contains(config.Env, "prod") {
 		logger.Formatter = new(logrus.JSONFormatter)
-	}
+	// }
 	l := logger.WithField("port", config.Port)
 
 	r, s := api.Initialize(logger)

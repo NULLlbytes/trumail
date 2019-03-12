@@ -1,8 +1,8 @@
 package: github.com/envolt/trumail
 import:
-- package: github.com/Sirupsen/logrus
 - package: github.com/gorilla/handlers
 - package: github.com/gorilla/mux
+- package: github.com/sirupsen/logrus
 - package: golang.org/x/net
   subpackages:
   - idna
