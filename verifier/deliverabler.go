@@ -59,7 +59,7 @@ func NewDeliverabler(domain, host, sourceAddr string) (Deliverabler, error) {
 	}
 
 	// Dial the SMTP server with the provided timeout
-	client, err := dialSMTPTimeout(records[0].Host+":25", 3*time.Second)
+	client, err := dialSMTPTimeout(records[0].Host+":25", 10*time.Second)
 	if err != nil {
 		return nil, err
 	}
